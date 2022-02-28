@@ -94,7 +94,7 @@ namespace CartApi.Controllers
             {
                 channel.QueueDeclare(queue: "orders", durable: true, exclusive: false, autoDelete: false, arguments: null);
 
-                string message = "CartOrder [cartId=" + cart.CartID + ", orderId=" + cart.OrderID + ", status=" + cart.OrderStatus;
+                string message = "CartOrder [cartId=" + cart.CartID + ", orderId=" + cart.OrderID + ", status=" + cart.OrderStatus + ", products=" + cart.Products;
                 var body = Encoding.UTF8.GetBytes(message);
 
                 channel.BasicPublish(exchange: "", routingKey: "orders", basicProperties: null, body: body);
